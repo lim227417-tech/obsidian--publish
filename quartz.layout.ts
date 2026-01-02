@@ -28,6 +28,7 @@ export const defaultContentPageLayout: PageLayout = {
     Component.DesktopOnly(Component.TableOfContents()),
     Component.Backlinks(),
   ],
+  afterBody: [],
 }
 
 export const defaultListPageLayout: PageLayout = {
@@ -43,6 +44,7 @@ export const defaultListPageLayout: PageLayout = {
     Component.Darkmode(),
   ],
   right: [],
+  afterBody: [],
 }
 
 export const default404PageLayout: PageLayout = {
@@ -54,4 +56,5 @@ export const default404PageLayout: PageLayout = {
     Component.Darkmode(),
   ],
   right: [],
+  afterBody: [],
 }
