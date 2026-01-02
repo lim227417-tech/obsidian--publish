@@ -5,9 +5,7 @@ export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [],
   footer: Component.Footer({
-    links: {
-      GitHub: "https://github.com",
-    },
+    links: {},
   }),
 }
 
@@ -34,17 +32,24 @@ export const defaultContentPageLayout: PageLayout = {
 }
 
 export const defaultListPageLayout: PageLayout = {
-  beforeBody: [
-    Component.Breadcrumbs(),
-    Component.ArticleTitle(),
-    Component.ContentMeta(),
-  ],
+  beforeBody: [Component.Breadcrumbs(), Component.ArticleTitle()],
   left: [
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
     Component.Darkmode(),
-    Component.DesktopOnly(Component.Explorer()),
+  ],
+  right: [],
+  afterBody: [],
+}
+
+export const default404PageLayout: PageLayout = {
+  beforeBody: [],
+  left: [
+    Component.PageTitle(),
+    Component.MobileOnly(Component.Spacer()),
+    Component.Search(),
+    Component.Darkmode(),
   ],
   right: [],
   afterBody: [],
