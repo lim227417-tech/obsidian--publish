@@ -23,31 +23,30 @@ const config: QuartzConfig = {
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
-        header: "Schibsted Grotesk",
-        body: "Source Sans Pro",
-        code: "IBM Plex Mono",
-      },
-      colors: {
-  lightMode: {
-    lightMode: {
-      light: "#faf8f8",      // 背景色
-      lightgray: "#e5e5e5",  // 边框、分割线
-      gray: "#b8b8b8",       // 辅助文字、图表节点
-      darkgray: "#4e4e4e",   // 正文文字
-      dark: "#2b2b2b",       // 标题文字
-      secondary: "#284b63",  // 链接颜色、强调色 (最重要)
-      tertiary: "#84a59d",   // 鼠标悬停颜色、高亮背景
-      highlight: "rgba(143, 159, 169, 0.15)", // 文本高亮背景
+        header: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif",
+    body: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif",
+    code: "'SF Mono', 'Menlo', monospace",
   },
-  darkMode: {
-    light: "#191919",       // Notion 深色模式背景
-    lightgray: "#2F2F2F",
-    gray: "#9B9A97",
-    darkgray: "#D3D3D3",    // 深色模式文字
-    dark: "#FFFFFF",
-    secondary: "#5AC8FA",   // 深色模式下的蓝色
-    tertiary: "#2F2F2F",
-    highlight: "rgba(90, 200, 250, 0.15)",
+  colors: {
+    lightMode: {
+      light: "#F5F5F7",      // 页面整体背景（苹果经典的浅灰色）
+      lightgray: "#E5E5E5",  // 边框
+      gray: "#86868b",       // 次要文字
+      darkgray: "#1d1d1f",   // 正文
+      dark: "#000000",       // 标题
+      secondary: "#0071e3",  // Apple 官方蓝色 (链接/强调)
+      tertiary: "#5AC8FA",
+      highlight: "rgba(0, 113, 227, 0.1)",
+    },
+    darkMode: {
+      light: "#000000",      // 暗色模式背景（纯黑）
+      lightgray: "#333333",
+      gray: "#86868b",
+      darkgray: "#f5f5f7",   // 正文
+      dark: "#ffffff",       // 标题
+      secondary: "#2997ff",  // Apple 暗色模式蓝
+      tertiary: "#64D2FF",
+      highlight: "rgba(41, 151, 255, 0.15)",
   },
 },
     },
