@@ -6,3 +6,17 @@
   --headerFont: "Lora", "Songti SC", "SimSun", "STSong", "Noto Serif SC", serif !important;
   --bodyFont: "Lora", "Songti SC", "SimSun", "STSong", "Noto Serif SC", serif !important;
 }
+
+/* 侧边栏卡片化 + 毛玻璃效果 */
+.left, .right {
+  background: rgba(var(--light), 0.5); /* 背景半透明 */
+  backdrop-filter: blur(10px); /* 毛玻璃模糊 */
+  border-radius: 12px; /* 圆角 */
+  padding: 10px;
+}
+
+/* 搜索框美化 */
+.search-button {
+  border-radius: 8px;
+  background: rgba(var(--secondary), 0.1); /* 淡淡的紫色背景 */
+}
