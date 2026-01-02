@@ -1,1 +1,28 @@
+/* 1. 基础设置：让页面变宽 */
+.page {
+  max-width: 95vw !important; /* 占据屏幕 95% 宽度 */
+  margin: 0 auto;             /* 居中显示 */
+}
 
+/* 2. 电脑端强制使用“网格”布局 (关键修复) */
+@media all and (min-width: 1000px) { /* 只要屏幕大于1000px就生效 */
+  .page {
+    display: grid !important; /* 【关键】必须声明这是网格 */
+    /* 定义三列宽度：左侧 250px | 中间自动填满 | 右侧 250px */
+    /* 你可以根据需要调整 250px 这个数字 */
+    grid-template-columns: 250px 1fr 250px !important; 
+    gap: 20px; /* 列之间的间距 */
+  }
+
+  /* 3. 确保中间内容不会意外撑破网格 */
+  .center {
+    min-width: 0; /* 防止内容过长导致网格失效 */
+    max-width: none !important;
+  }
+
+  /* 4. 确保左右两侧乖乖待在格子里 */
+  .left, .right {
+    width: auto !important;
+    margin: 0 !important;
+  }
+}
