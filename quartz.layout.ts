@@ -1,21 +1,5 @@
 // quartz.layout.ts
-import { PageLayout, SharedLayout } from "./quartz/cfg"
-import * as Component from "./quartz/components"
 
-// 保持公共组件简单
-export const sharedPageComponents: SharedLayout = {
-  head: Component.Head(),
-  header: [],
-  afterBody: [], // 暂时清空 footer，避免报错
-  footer: Component.Footer({
-    links: {
-      "GitHub": "https://github.com/jackyzha0/quartz",
-      "Discord": "https://discord.gg/cRFFHYye7p",
-    },
-  }),
-}
-
-// 核心布局修复
 export const defaultContentPageLayout: PageLayout = {
   beforeBody: [
     Component.Breadcrumbs(),
@@ -28,23 +12,11 @@ export const defaultContentPageLayout: PageLayout = {
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
     Component.DesktopOnly(Component.Explorer()),
+    // 把目录放到左侧（可选，或者直接不要目录看看效果）
+    Component.DesktopOnly(Component.TableOfContents()), 
   ],
-  // 将右侧保持简单，避免图谱(Graph)挤占空间，先注释掉 Graph
   right: [
-    // Component.Graph(), 
-    Component.DesktopOnly(Component.TableOfContents()),
-    Component.Backlinks(),
+    // 【关键操作】清空右侧栏，让中间内容自动向右延展
+    // 如果你非常需要右侧栏，后面可以再加回来，先确保布局正常
   ],
-}
-
-export const defaultListPageLayout: PageLayout = {
-  beforeBody: [Component.Breadcrumbs(), Component.ArticleTitle(), Component.ContentMeta()],
-  left: [
-    Component.PageTitle(),
-    Component.MobileOnly(Component.Spacer()),
-    Component.Search(),
-    Component.Darkmode(),
-    Component.DesktopOnly(Component.Explorer()),
-  ],
-  right: [],
 }
