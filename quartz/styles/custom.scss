@@ -1,80 +1,99 @@
-@use "./base.scss";
-@use "./variables.scss" as *;
+/* quartz/styles/custom.scss */
 
-// 1. 字体与基础排版（沿用之前的防弹配置，最符合Notion原生感）
-:root {
-  --body-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-  --header-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-}
-
-body {
-  // Notion 的核心：文字颜色不是纯黑，而是 #37352F
-  color: var(--darkgray);
-}
-
-// 2. 布局调整：更宽、更舒展
+// 1. 核心布局：卡片化
+// 我们要把原本平铺的内容变成一张居中的“纸”
 .page {
-  max-width: 900px; // 加宽一点，Notion 默认比较宽
-}
-
-// 3. 标题样式
-h1, h2, h3 {
-  font-weight: 600; // 不用太粗，Notion 是半粗体
-  letter-spacing: -0.02em; // 稍微紧凑一点点，显得精致
-  margin-top: 1.8em;
-  margin-bottom: 0.5em;
-}
-
-h1 {
-  font-size: 2.5em;
-  border-bottom: 1px solid var(--lightgray); // 标题下方加一条淡淡的分割线
-  padding-bottom: 0.3em;
-}
-
-// 4. Notion 风格的 Callout (提示块)
-// Quartz 默认 Callout 颜色较深，Notion 是淡色背景
-.callout {
-  background-color: transparent !important; // 移除默认背景
-  border: 1px solid var(--lightgray); // 细边框
-  border-radius: 6px; // 小圆角
-  padding: 16px;
-  display: flex;
-  align-items: flex-start;
+  // 关键：强制卡片背景色
+  // Light模式下是白色，Dark模式下是深灰
+  background-color: white; 
   
-  // 如果想模仿 Notion 的有色背景，可以去掉上面 transparent 那行，改为：
-  // background-color: #F7F7F5 !important; 
+  max-width: 860px !important; // 限制宽度，提升阅读体验
+  margin-top: 3rem !important; // 顶部留空
+  margin-bottom: 3rem !important;
+  padding: 3.5rem !important;  // 内部大留白
+  
+  border-radius: 20px;         // Mac 标准圆角
+  // 关键：昂贵的阴影效果（模拟悬浮感）
+  box-shadow: 
+    0 1px 2px rgba(0,0,0,0.04), 
+    0 8px 16px rgba(0,0,0,0.04);
 }
 
-// 5. 引用块 (Blockquote) -> 也就是 Obsidian 里的 > 
-blockquote {
-  border-left: 3px solid var(--dark); // 左侧竖线加黑
-  background: transparent; // 背景透明
-  font-style: normal; // 文字不倾斜
-  color: var(--gray); // 文字颜色变浅
-  padding: 0.5em 0 0.5em 1em; // 调整缩进
+// 2. 暗色模式的特殊处理
+// 苹果的暗色模式不是纯黑背景上的白字，而是深灰卡片
+:root[saved-theme="dark"] .page {
+  background-color: #1C1C1E; // macOS 窗口背景色
+  box-shadow: 
+    0 0 0 1px rgba(255,255,255,0.1), // 极细高光边框
+    0 20px 40px rgba(0,0,0,0.4);
 }
 
-// 6. 链接样式
-// Notion 的链接通常是下划线，或者很克制的颜色
-a {
+// 3. 增加一点点“极光”氛围 (可选)
+// 这是一个纯 CSS 的顶部光晕，模拟 Apple Intelligence 的流光感
+// 如果你想要绝对纯净，可以删掉这一段 body 样式
+body::before {
+  content: "";
+  position: fixed;
+  top: -20%;
+  left: -10%;
+  width: 120%;
+  height: 60vh;
+  background: radial-gradient(circle at 50% 0%, rgba(0, 113, 227, 0.08), transparent 70%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+// 4. 侧边栏优化
+// 让侧边栏文字更精致，不像默认那么粗糙
+.left.sidebar {
+  padding-top: 4rem;
+  
+  // 减淡侧边栏文字，突出中间的卡片
+  p, h3, a {
+    color: var(--gray);
+    transition: color 0.2s;
+    &:hover {
+      color: var(--secondary);
+    }
+  }
+}
+
+// 5. 标题排版优化
+h1 {
+  font-weight: 700;
+  letter-spacing: -0.02em; // 紧凑一点，更有现代感
+  margin-bottom: 1rem;
+}
+
+// 6. 链接样式：胶囊高亮
+// 鼠标移上去时，出现一个圆角背景，而不是简单的变色
+a.internal {
+  padding: 2px 6px;
+  margin: 0 -2px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
   text-decoration: none;
-  font-weight: 500;
-  transition: opacity 0.2s ease;
   
   &:hover {
-    opacity: 0.7; // 悬停时稍微变透明，很优雅
-    text-decoration: underline;
-  }
-  
-  &.internal {
-    background-color: transparent; // 移除内部链接默认的高亮背景
-    text-decoration: underline;
-    text-decoration-color: var(--lightgray); // 下划线颜色很浅
-    text-decoration-thickness: 2px;
+    background-color: var(--highlight);
+    color: var(--secondary);
   }
 }
 
-// 7. 列表项
-li {
-  margin-bottom: 0.3em; // 列表稍微紧凑一点
+// 7. Graph View (关系图) 优化
+// 让它融入卡片
+.graph {
+  border: 1px solid var(--lightgray);
+  border-radius: 12px;
+  margin-top: 2rem;
+}
+
+// 8. 移动端适配
+@media (max-width: 600px) {
+  .page {
+    margin: 0 !important;
+    border-radius: 0; // 手机上铺满全屏
+    box-shadow: none;
+    padding: 2rem 1.5rem !important;
+  }
 }
