@@ -44,3 +44,14 @@ export const defaultListPageLayout: PageLayout = {
   ],
   right: [],
 }
+
+export const default404PageLayout: PageLayout = {
+  beforeBody: [],
+  left: [
+    Component.PageTitle(),
+    Component.MobileOnly(Component.Spacer()),
+    Component.Search(),
+    Component.Darkmode(),
+  ],
+  right: [],
+}
