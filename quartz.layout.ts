@@ -19,7 +19,7 @@ export const sharedPageComponents: SharedLayout = {
 
 // 页面主体布局
 export const defaultContentPageLayout: PageLayout = {
-  // 左侧边栏
+  // 内容前（标题区域）
   beforeBody: [
     Component.Breadcrumbs(),
     Component.ArticleTitle(),
@@ -86,17 +86,13 @@ export const defaultContentPageLayout: PageLayout = {
     Component.DesktopOnly(Component.TableOfContents()),
     Component.Backlinks(),
   ],
-}
-
-// 列表页面布局（标签页、文件夹页等）
-export const defaultListPageLayout: PageLayout = {
-  beforeBody: [Component.Breadcrumbs(), Component.ArticleTitle(), Component.ContentMeta()],
-  left: [
-    Component.PageTitle(),
-    Component.MobileOnly(Component.Spacer()),
-    Component.Search(),
-    Component.Darkmode(),
-    Component.DesktopOnly(Component.Explorer()),
-  ],
-  right: [],
-}
+  
+  // ⚠️ 这是之前遗漏的关键部分！
+  // 内容后（文章底部）
+  afterBody: [
+    Component.Comments({
+      provider: 'giscus',
+      options: {
+        // 👉 如果你想启用评论，需要配置 Giscus
+        // 不需要评论系统可以删除整个 Comments 组件
+        repo: '你的用户名/你的仓库名
