@@ -28,29 +28,27 @@ const config: QuartzConfig = {
         code: "IBM Plex Mono",
       },
       colors: {
-        lightMode: {
-          light: "#faf8f8",
-          lightgray: "#e5e5e5",
-          gray: "#b8b8b8",
-          darkgray: "#4e4e4e",
-          dark: "#2b2b2b",
-          secondary: "#284b63",
-          tertiary: "#84a59d",
-          highlight: "rgba(143, 159, 169, 0.15)",
-          textHighlight: "#fff23688",
-        },
-        darkMode: {
-          light: "#161618",
-          lightgray: "#393639",
-          gray: "#646464",
-          darkgray: "#d4d4d4",
-          dark: "#ebebec",
-          secondary: "#7b97aa",
-          tertiary: "#84a59d",
-          highlight: "rgba(143, 159, 169, 0.15)",
-          textHighlight: "#b3aa0288",
-        },
-      },
+  lightMode: {
+    light: "#FFFFFF",       // 背景：纯白
+    lightgray: "#E5E5E5",   // 边框/分割线：极浅灰
+    gray: "#9B9A97",        // 次要信息（如日期）：中灰
+    darkgray: "#37352F",    // 正文：Notion 经典的深炭灰色（非纯黑！）
+    dark: "#191711",        // 标题：接近黑色
+    secondary: "#2eaadc",   // 链接/强调色：Notion 蓝 (或者你可以选黑灰色 #37352F 保持极简)
+    tertiary: "#F0F0F0",    // 鼠标悬停背景：很淡的灰色
+    highlight: "rgba(46, 170, 220, 0.15)", // 搜索高亮
+  },
+  darkMode: {
+    light: "#191919",       // Notion 深色模式背景
+    lightgray: "#2F2F2F",
+    gray: "#9B9A97",
+    darkgray: "#D3D3D3",    // 深色模式文字
+    dark: "#FFFFFF",
+    secondary: "#5AC8FA",   // 深色模式下的蓝色
+    tertiary: "#2F2F2F",
+    highlight: "rgba(90, 200, 250, 0.15)",
+  },
+},
     },
   },
   plugins: {
