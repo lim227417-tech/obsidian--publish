@@ -1,18 +1,25 @@
-/* 修改页面最大宽度，让整个页面铺开 */
+/* 1. 强制页面最大宽度变宽 (适配大屏) */
 .page {
-  max-width: 1400px; /* 默认通常是 1200px 或更小，这里改大 */
+  max-width: 95vw !important; /* 原版限制较死，改为屏幕宽度的 95% */
 }
 
-/* 针对桌面端，调整中间内容区域的宽度 */
+/* 2. 针对电脑端 (屏幕大于 1200px) 重新分配三栏比例 */
 @media all and (min-width: 1200px) {
-  .center {
-    /* 强制中间部分占据剩余空间 */
-    flex-grow: 1;
-    max-width: none; /* 取消中间内容的最大宽度限制 */
-  }
-  
-  /* 如果你想让右侧的 Graph View 稍微小一点，给中间留更多位置 */
-  .right {
-    flex-basis: 300px; /* 固定右侧宽度 */
+  .page {
+    /* 左侧栏保持 300px | 中间自动撑满 | 右侧栏保持 300px */
+    grid-template-columns: 300px 1fr 300px !important; 
   }
 }
+
+/* 3. 解除中间内容的最大宽度限制 */
+.center {
+  max-width: 100% !important;
+  margin: 0 auto;
+}
+
+/* (可选) 如果你觉得字太小，可以顺便加这个 */
+/*
+p, li {
+  font-size: 1.1rem;
+}
+*/
