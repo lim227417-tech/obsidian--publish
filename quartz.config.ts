@@ -20,35 +20,35 @@ const config: QuartzConfig = {
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "modified",
     theme: {
-      fontOrigin: "googleFonts",
+      fontOrigin: "local", // 【重要修正】改为 local，防止去 Google 下载系统字体导致报错
       cdnCaching: true,
       typography: {
         header: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif",
-    body: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif",
-    code: "'SF Mono', 'Menlo', monospace",
-  },
-  colors: {
-    lightMode: {
-      light: "#F5F5F7",      // 页面整体背景（苹果经典的浅灰色）
-      lightgray: "#E5E5E5",  // 边框
-      gray: "#86868b",       // 次要文字
-      darkgray: "#1d1d1f",   // 正文
-      dark: "#000000",       // 标题
-      secondary: "#0071e3",  // Apple 官方蓝色 (链接/强调)
-      tertiary: "#5AC8FA",
-      highlight: "rgba(0, 113, 227, 0.1)",
-    },
-    darkMode: {
-      light: "#000000",      // 暗色模式背景（纯黑）
-      lightgray: "#333333",
-      gray: "#86868b",
-      darkgray: "#f5f5f7",   // 正文
-      dark: "#ffffff",       // 标题
-      secondary: "#2997ff",  // Apple 暗色模式蓝
-      tertiary: "#64D2FF",
-      highlight: "rgba(41, 151, 255, 0.15)",
-  },
-},
+        body: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif",
+        code: "'SF Mono', 'Menlo', monospace",
+      },
+      colors: {
+        lightMode: {
+          light: "#F5F5F7",      // 页面整体背景
+          lightgray: "#E5E5E5",  // 边框
+          gray: "#86868b",       // 次要文字
+          darkgray: "#1d1d1f",   // 正文
+          dark: "#000000",       // 标题
+          secondary: "#0071e3",  // Apple 官方蓝色
+          tertiary: "#5AC8FA",
+          highlight: "rgba(0, 113, 227, 0.1)",
+        },
+        darkMode: {
+          light: "#000000",      // 暗色模式背景
+          lightgray: "#333333",
+          gray: "#86868b",
+          darkgray: "#f5f5f7",   // 正文
+          dark: "#ffffff",       // 标题
+          secondary: "#2997ff",  // Apple 暗色模式蓝
+          tertiary: "#64D2FF",
+          highlight: "rgba(41, 151, 255, 0.15)",
+        },
+      },
     },
   },
   plugins: {
@@ -86,8 +86,8 @@ const config: QuartzConfig = {
       Plugin.Static(),
       Plugin.Favicon(),
       Plugin.NotFoundPage(),
-      // Comment out CustomOgImages to speed up build time
-      Plugin.CustomOgImages(),
+      // 【修正】这里已经帮你真正注释掉了，可以加快构建速度
+      // Plugin.CustomOgImages(),
     ],
   },
 }
