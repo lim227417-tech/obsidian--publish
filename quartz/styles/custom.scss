@@ -1,3 +1,8 @@
 @use "./base.scss";
 
 // put your custom CSS here!
+/* 强制覆盖字体设置，优先使用英文字体，中文回退到系统宋体 */
+:root {
+  --headerFont: "Lora", "Songti SC", "SimSun", "STSong", "Noto Serif SC", serif !important;
+  --bodyFont: "Lora", "Songti SC", "SimSun", "STSong", "Noto Serif SC", serif !important;
+}
