@@ -29,14 +29,15 @@ const config: QuartzConfig = {
       },
       colors: {
   lightMode: {
-    light: "#FFFFFF",       // 背景：纯白
-    lightgray: "#E5E5E5",   // 边框/分割线：极浅灰
-    gray: "#9B9A97",        // 次要信息（如日期）：中灰
-    darkgray: "#37352F",    // 正文：Notion 经典的深炭灰色（非纯黑！）
-    dark: "#191711",        // 标题：接近黑色
-    secondary: "#2eaadc",   // 链接/强调色：Notion 蓝 (或者你可以选黑灰色 #37352F 保持极简)
-    tertiary: "#F0F0F0",    // 鼠标悬停背景：很淡的灰色
-    highlight: "rgba(46, 170, 220, 0.15)", // 搜索高亮
+    lightMode: {
+      light: "#faf8f8",      // 背景色
+      lightgray: "#e5e5e5",  // 边框、分割线
+      gray: "#b8b8b8",       // 辅助文字、图表节点
+      darkgray: "#4e4e4e",   // 正文文字
+      dark: "#2b2b2b",       // 标题文字
+      secondary: "#284b63",  // 链接颜色、强调色 (最重要)
+      tertiary: "#84a59d",   // 鼠标悬停颜色、高亮背景
+      highlight: "rgba(143, 159, 169, 0.15)", // 文本高亮背景
   },
   darkMode: {
     light: "#191919",       // Notion 深色模式背景
