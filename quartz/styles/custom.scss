@@ -7,63 +7,225 @@
   --bodyFont: "Lora", "Songti SC", "SimSun", "STSong", "Noto Serif SC", serif !important;
 }
 
-// 1. 全局字体优化
+
+
+// ===== Claude 风格主题 =====
+
+// 1. 配色变量
+:root {
+  // 背景色 - 温暖的米白色
+  --light: #FAF9F7;
+  --lightgray: #F0EDE8;
+  --gray: #B8B3A9;
+  --darkgray: #6B6560;
+  --dark: #1A1715;
+  
+  // 强调色 - Claude 标志性的橙褐色
+  --secondary: #D97757;
+  --tertiary: #E8916F;
+  
+  // 其他
+  --highlight: rgba(217, 119, 87, 0.12);
+  --textHighlight: rgba(217, 119, 87, 0.2);
+}
+
+// 深色模式
+[saved-theme="dark"] {
+  --light: #1A1714;
+  --lightgray: #2A2520;
+  --gray: #6B6560;
+  --darkgray: #B8B3A9;
+  --dark: #FAF9F7;
+  --secondary: #E8916F;
+  --tertiary: #D97757;
+}
+
+// 2. 字体设置
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
 body {
-  -webkit-font-smoothing: antialiased; // 让字体渲染更平滑
-  letter-spacing: -0.01em; // 稍微收紧字间距，更有现代杂志感
-  line-height: 1.7; // 增加行高，提升阅读呼吸感
+  --headerFont: 'Source Serif 4', Georgia, serif;
+  --bodyFont: 'Inter', -apple-system, sans-serif;
+  --codeFont: 'JetBrains Mono', monospace;
 }
 
-// 2. 标题样式：增加优雅感
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 500; // 不要太粗
-  letter-spacing: -0.02em;
-  margin-top: 2em; // 标题上方留白更多
+// 3. 全局排版
+body {
+  background: var(--light);
+  font-size: 17px;
+  line-height: 1.75;
+  letter-spacing: -0.01em;
 }
 
-h1 {
-  font-size: 2.5rem;
+// 4. 标题样式 - 优雅衬线体
+h1, h2, h3, h4 {
+  font-family: var(--headerFont);
+  font-weight: 600;
+  letter-spacing: -0.025em;
   color: var(--dark);
 }
 
-// 3. 链接样式：去下划线，改用颜色区分，模仿 Claude 的交互
+h1 {
+  font-size: 2.75rem;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  font-size: 1.875rem;
+  margin-top: 3rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--lightgray);
+}
+
+// 5. 内容区域 - 窄宽度居中
+.center {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+article {
+  max-width: 680px;
+}
+
+// 6. 链接样式
 a {
-  text-decoration: none !important;
-  transition: opacity 0.2s ease;
+  color: var(--secondary);
+  text-decoration: none;
+  transition: all 0.2s ease;
   
   &:hover {
-    opacity: 0.8;
+    color: var(--tertiary);
   }
+}
+
+// 内部链接 - 柔和下划线
+a.internal {
+  background-image: linear-gradient(
+    transparent 0%,
+    transparent calc(100% - 1px),
+    var(--secondary) calc(100% - 1px)
+  );
+  background-size: 100% 100%;
   
-  &.internal {
-    text-decoration-line: none;
-    background-color: transparent; 
-    border-bottom: 1px solid var(--secondary); // 仅保留底部细线
+  &:hover {
+    background-image: linear-gradient(
+      var(--highlight) 0%,
+      var(--highlight) 100%
+    );
+    border-radius: 2px;
   }
 }
 
-// 4. 容器圆角：让所有方块变得柔和
-.card, pre, code, img, .callout {
-  border-radius: 8px; // 适度的圆角
-}
-
-// 5. 侧边栏优化：更极简
-.left.sidebar, .right.sidebar {
+// 7. 代码块 - 柔和圆角
+pre {
+  background: var(--lightgray) !important;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 12px;
+  padding: 1.25rem !important;
   font-size: 0.9rem;
-  
-  // 搜索框圆润化
-  .search-button {
-    border-radius: 20px;
-    background-color: var(--lightgray);
-  }
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.04);
 }
 
-// 6. 引用块 (Blockquote) 样式：模仿 AI 对话框的感觉
+code {
+  font-family: var(--codeFont);
+  font-size: 0.875em;
+}
+
+// 行内代码
+:not(pre) > code {
+  background: var(--lightgray);
+  padding: 0.2em 0.45em;
+  border-radius: 6px;
+  font-size: 0.875em;
+}
+
+// 8. 引用块 - 温暖强调
 blockquote {
   border-left: 3px solid var(--secondary);
-  background: var(--lightgray);
+  background: linear-gradient(90deg, var(--highlight) 0%, transparent 100%);
   padding: 1rem 1.5rem;
+  border-radius: 0 8px 8px 0;
+  margin: 1.5rem 0;
   font-style: italic;
   color: var(--darkgray);
-  border-radius: 0 8px 8px 0; // 右侧圆角
+}
+
+// 9. 卡片效果 - 用于 callout 等
+.callout {
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  
+  &[data-callout="tip"],
+  &[data-callout="hint"] {
+    border-left: 4px solid var(--secondary);
+  }
+}
+
+// 10. 侧边栏美化
+.left-sidebar, .right-sidebar {
+  font-size: 0.9rem;
+}
+
+// 目录
+.toc {
+  .depth-1 > a {
+    font-weight: 600;
+  }
+  
+  a:hover {
+    background: var(--highlight);
+    border-radius: 4px;
+  }
+}
+
+// 11. 图谱节点颜色
+.graph {
+  .node circle {
+    fill: var(--secondary);
+  }
+  
+  .node.active circle {
+    fill: var(--tertiary);
+  }
+}
+
+// 12. 搜索框
+#search-container input {
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  transition: all 0.2s ease;
+  
+  &:focus {
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 3px var(--highlight);
+  }
+}
+
+// 13. 页脚
+footer {
+  border-top: 1px solid var(--lightgray);
+  padding-top: 2rem;
+  margin-top: 4rem;
+  color: var(--gray);
+  font-size: 0.875rem;
+}
+
+// 14. 平滑过渡动画
+* {
+  transition: background-color 0.2s ease, 
+              border-color 0.2s ease,
+              color 0.2s ease;
+}
+
+// 15. 选中文本颜色
+::selection {
+  background: var(--highlight);
+  color: var(--dark);
 }
