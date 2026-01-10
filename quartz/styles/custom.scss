@@ -7,16 +7,63 @@
   --bodyFont: "Lora", "Songti SC", "SimSun", "STSong", "Noto Serif SC", serif !important;
 }
 
-/* 侧边栏卡片化 + 毛玻璃效果 */
-.left, .right {
-  background: rgba(var(--light), 0.5); /* 背景半透明 */
-  backdrop-filter: blur(10px); /* 毛玻璃模糊 */
-  border-radius: 12px; /* 圆角 */
-  padding: 10px;
+// 1. 全局字体优化
+body {
+  -webkit-font-smoothing: antialiased; // 让字体渲染更平滑
+  letter-spacing: -0.01em; // 稍微收紧字间距，更有现代杂志感
+  line-height: 1.7; // 增加行高，提升阅读呼吸感
 }
 
-/* 搜索框美化 */
-.search-button {
-  border-radius: 8px;
-  background: rgba(var(--secondary), 0.1); /* 淡淡的紫色背景 */
+// 2. 标题样式：增加优雅感
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500; // 不要太粗
+  letter-spacing: -0.02em;
+  margin-top: 2em; // 标题上方留白更多
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: var(--dark);
+}
+
+// 3. 链接样式：去下划线，改用颜色区分，模仿 Claude 的交互
+a {
+  text-decoration: none !important;
+  transition: opacity 0.2s ease;
+  
+  &:hover {
+    opacity: 0.8;
+  }
+  
+  &.internal {
+    text-decoration-line: none;
+    background-color: transparent; 
+    border-bottom: 1px solid var(--secondary); // 仅保留底部细线
+  }
+}
+
+// 4. 容器圆角：让所有方块变得柔和
+.card, pre, code, img, .callout {
+  border-radius: 8px; // 适度的圆角
+}
+
+// 5. 侧边栏优化：更极简
+.left.sidebar, .right.sidebar {
+  font-size: 0.9rem;
+  
+  // 搜索框圆润化
+  .search-button {
+    border-radius: 20px;
+    background-color: var(--lightgray);
+  }
+}
+
+// 6. 引用块 (Blockquote) 样式：模仿 AI 对话框的感觉
+blockquote {
+  border-left: 3px solid var(--secondary);
+  background: var(--lightgray);
+  padding: 1rem 1.5rem;
+  font-style: italic;
+  color: var(--darkgray);
+  border-radius: 0 8px 8px 0; // 右侧圆角
 }
