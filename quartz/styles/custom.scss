@@ -40,14 +40,7 @@
   --tertiary: #D97757;
 }
 
-// 2. 字体设置
-@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 
-body {
-  --headerFont: 'Source Serif 4', Georgia, serif;
-  --bodyFont: 'Inter', -apple-system, sans-serif;
-  --codeFont: 'JetBrains Mono', monospace;
-}
 
 // 3. 全局排版
 body {
