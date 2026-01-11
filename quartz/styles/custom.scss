@@ -9,3 +9,52 @@
 
 
 
+/* --- 明暗主题切换：日出日落渐变效果 --- */
+
+// 1. 定义颜色变量 (可以在这里修改你喜欢的颜色)
+:root {
+  --day: #fffdfa;       /* 白天：米白 */
+  --evening: #fccc83;   /* 傍晚：金黄 */
+  --dusk: #db7a2a;      /* 黄昏：橙红 */
+  --night: #0f131c;     /* 深夜：深蓝黑 */
+  --dawn: #16132b;      /* 黎明：紫黑 */
+  --morning: #9fb3bf;   /* 清晨：灰蓝 */
+}
+
+// 2. 定义日出动画 (从黑夜 -> 白天)
+@keyframes sunrise {
+  0% { background-color: var(--night); }
+  10% { background-color: var(--dawn); }
+  35% { background-color: var(--morning); }
+  100% { background-color: var(--day); }
+}
+
+// 3. 定义日落动画 (从白天 -> 黑夜)
+@keyframes sunset {
+  0% { background-color: var(--day); }
+  30% { background-color: var(--evening); }
+  60% { background-color: var(--dusk); }
+  90% { background-color: var(--dawn); }
+  100% { background-color: var(--night); }
+}
+
+// 4. 将动画绑定到 Body 标签
+body {
+  // 默认样式 (浅色模式下的状态)
+  background-color: var(--day);
+  
+  // 触发日出动画
+  animation-name: sunrise;
+  animation-duration: 1s;          /* 动画持续1秒 */
+  animation-fill-mode: forwards;   /* 动画结束后保持最后的状态 */
+  animation-timing-function: linear;
+}
+
+// 当切换到深色模式时 (Quartz 会在 html 或 body 上添加 saved-theme="dark")
+[saved-theme="dark"] body {
+  background-color: var(--night); // 确保最终颜色是黑色
+  
+  // 触发日落动画
+  animation-name: sunset;
+  animation-duration: 1.5s;        /* 日落稍微慢一点，更有氛围感 */
+}
