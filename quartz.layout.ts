@@ -8,7 +8,7 @@ export const sharedPageComponents: SharedLayout = {
   afterBody: [],
   footer: Component.Footer({
     links: {
-      GitHub: "https://github.com/jackyzha0/quartz",
+      "Notion": "https://comet-telescope-d91.notion.site/bec70d5a09974ce1806eac00454e4751?pvs=105",
       "小红书": "https://xhslink.com/m/19qw451M6q7",
     },
   }),
