@@ -1,9 +1,301 @@
 @use "./base.scss";
 
-// put your custom CSS here!
-/* 强制覆盖字体设置，优先使用英文字体，中文回退到系统宋体 */
+// ============================================================
+// ZenGen - Claude-inspired warm humanistic theme overrides
+// ============================================================
+
+// --- Font stack: Lora serif + modern Chinese serif fallbacks ---
 :root {
-  --headerFont: "Lora", "Songti SC", "SimSun", "STSong", "Noto Serif SC", serif !important;
-  --bodyFont: "Lora", "Songti SC", "SimSun", "STSong", "Noto Serif SC", serif !important;
+  --headerFont: "Lora", "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif !important;
+  --bodyFont: "Lora", "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif !important;
 }
 
+// --- Typography: increase line-height for breathing room ---
+tbody,
+li,
+p {
+  line-height: 1.75rem;
+}
+
+// --- Paragraph spacing ---
+article p {
+  margin-bottom: 0.8rem;
+}
+
+// --- Text selection: warm tone ---
+::selection {
+  background: color-mix(in srgb, var(--secondary) 30%, rgba(255, 255, 255, 0));
+  color: var(--darkgray);
+}
+
+// --- Text tone: slightly stronger contrast per theme ---
+:root {
+  --bodyText: color-mix(in srgb, var(--darkgray) 88%, var(--dark) 12%);
+}
+
+:root[saved-theme="dark"] {
+  --bodyText: color-mix(in srgb, var(--darkgray) 92%, var(--light) 8%);
+}
+
+// --- Typography: slightly larger, darker body text ---
+body {
+  font-size: 1.03rem;
+  font-weight: 450;
+}
+
+.center article,
+.center article p,
+.center article li,
+.center article ul,
+.center article ol,
+.center article td,
+.center article th,
+.center article blockquote,
+.center article .katex,
+.center article .math {
+  color: var(--bodyText);
+}
+
+// --- Links: restore highlight style for internal links ---
+a {
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  color: var(--secondary);
+
+  &:hover {
+    color: var(--tertiary);
+  }
+
+  &.internal {
+    text-decoration: none;
+    background-color: var(--highlight);
+    padding: 0 0.1rem;
+    border-radius: 5px;
+    line-height: 1.4rem;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: var(--tertiary);
+    }
+
+    &.broken {
+      color: var(--secondary);
+      opacity: 0.5;
+      transition: opacity 0.2s ease;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    &:has(> img) {
+      text-decoration: none;
+      background-color: transparent;
+      border-radius: 0;
+      padding: 0;
+    }
+
+    &.tag-link {
+      &::before {
+        content: "#";
+      }
+    }
+  }
+}
+
+// --- Rounded corners: softer (5px -> 8px) ---
+img {
+  border-radius: 8px;
+}
+
+pre {
+  border-radius: 8px;
+}
+
+code {
+  border-radius: 6px;
+}
+
+audio,
+video {
+  border-radius: 8px;
+}
+
+.text-highlight {
+  border-radius: 6px;
+}
+
+.external-embed.youtube,
+iframe.pdf {
+  border-radius: 8px;
+}
+
+// --- Blockquote: refined ---
+blockquote {
+  border-left: 2px solid color-mix(in srgb, var(--secondary) 60%, transparent);
+  padding-left: 1.2rem;
+}
+
+// --- Bold text: ensure warm dark ---
+article p > strong {
+  color: var(--dark);
+}
+
+// --- Table: warmer, more spacious ---
+th {
+  padding: 0.5rem 0.8rem;
+}
+
+td {
+  padding: 0.3rem 0.8rem;
+}
+
+// --- HR: slightly more margin ---
+hr {
+  margin: 2.5rem auto;
+}
+
+// --- Navigation progress bar: refined ---
+.navigation-progress {
+  height: 2px;
+}
+
+// --- Footnotes: softer divider ---
+.footnotes {
+  border-top: 1px solid color-mix(in srgb, var(--lightgray) 80%, transparent);
+}
+
+// --- Headings: slightly more spacing for readability ---
+h1 {
+  margin-top: 2.5rem;
+  margin-bottom: 1.1rem;
+}
+
+h2 {
+  margin-top: 2.1rem;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  margin-top: 1.8rem;
+  margin-bottom: 0.9rem;
+}
+
+// --- Smooth font rendering ---
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+article h1:first-of-type {
+  letter-spacing: 0.01em;
+}
+
+article h1:first-of-type + strong {
+  display: block;
+  font-size: 1.02rem;
+  color: color-mix(in srgb, var(--darkgray) 85%, var(--dark) 15%);
+  margin-top: 0.6rem;
+}
+
+article .home-section-title {
+  font-size: 1.28rem;
+  font-weight: 600;
+  text-align: center;
+  margin: 1.5rem 0 1rem 0;
+  color: color-mix(in srgb, var(--darkgray) 75%, var(--dark) 25%);
+}
+
+article h1:first-of-type + strong + p {
+  margin-top: 0.6rem;
+  font-size: 1.03rem;
+}
+
+article .home-cards {
+  margin: 0.8rem 0 1.6rem 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+@media all and (max-width: 900px) {
+  article .home-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media all and (max-width: 600px) {
+  article .home-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+article .home-card {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.85rem 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--lightgray) 70%, transparent);
+  background: color-mix(in srgb, var(--lightgray) 50%, transparent);
+  border-radius: 12px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+  text-decoration: none;
+  color: var(--darkgray);
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background-color 0.18s ease,
+    color 0.18s ease;
+}
+
+article .home-card:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--secondary) 25%, var(--lightgray));
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.1);
+  background: color-mix(in srgb, var(--lightgray) 35%, transparent);
+  color: var(--dark);
+}
+
+article .home-card-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+article .home-card-title {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+article .home-card-desc {
+  color: color-mix(in srgb, var(--darkgray) 80%, var(--dark) 20%);
+  font-size: 0.95rem;
+}
+
+.home img {
+  display: block;
+  margin: 1.2rem auto 0;
+}
+
+article strong + ul > li::marker {
+  content: "";
+}
+
+article strong + ul + strong {
+  display: block;
+  font-size: 1rem;
+  margin-top: 1.6rem;
+}
+
+// --- Backlinks: keep highlight, remove underline ---
+.backlinks a.internal {
+  text-decoration: none;
+  background-color: var(--highlight);
+  padding: 0 0.1rem;
+  border-radius: 5px;
+  line-height: 1.4rem;
+}
+
+// --- Tags: no underline for cleaner appearance ---
+a.tag-link {
+  text-decoration: none;
+}

@@ -8,6 +8,9 @@
   padding: 0 1rem;
   overflow-y: hidden;
   box-sizing: border-box;
+  --callout-warm: #c48445;
+  --callout-cool: #4f7fb0;
+  --callout-positive: #5a8f75;
 
   & > .callout-content {
     display: grid;
@@ -115,6 +118,42 @@
   &[data-callout="quote"] {
     --color: var(--secondary);
     --border: var(--lightgray);
+    --callout-icon: var(--callout-icon-quote);
+  }
+
+  &[data-callout="note"],
+  &[data-callout="tip"],
+  &[data-callout="faq"],
+  &[data-callout="quote"] {
+    --color: var(--callout-warm) !important;
+    --border: #c4844544 !important;
+    --bg: #c4844510 !important;
+    --callout-icon: var(--callout-icon-note) !important;
+  }
+
+  &[data-callout="example"] {
+    --color: var(--callout-cool) !important;
+    --border: #4f7fb044 !important;
+    --bg: #4f7fb010 !important;
+    --callout-icon: var(--callout-icon-example) !important;
+  }
+
+  &[data-callout="check"] {
+    --color: var(--callout-positive) !important;
+    --border: #5a8f7544 !important;
+    --bg: #5a8f7510 !important;
+    --callout-icon: var(--callout-icon-success) !important;
+  }
+
+  &[data-callout="tip"] {
+    --callout-icon: var(--callout-icon-tip);
+  }
+
+  &[data-callout="faq"] {
+    --callout-icon: var(--callout-icon-question);
+  }
+
+  &[data-callout="quote"] {
     --callout-icon: var(--callout-icon-quote);
   }
 
