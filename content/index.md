@@ -45,7 +45,7 @@ cssclasses: home
 <div class="home-section-title">开始阅读</div>
 
 <div class="home-cards">
-  <a class="home-card" href="#">
+  <a class="home-card" href="#" id="random-note" data-router-ignore>
     <span class="home-card-icon" aria-hidden="true">🎲</span>
     <span class="home-card-title">随机笔记</span>
     <span class="home-card-desc">随机跳转到一篇笔记</span>
@@ -61,6 +61,35 @@ cssclasses: home
     <span class="home-card-desc">勘误与交流建议的入口</span>
   </a>
 </div>
+
+<script>
+(function() {
+  function setupRandomNote() {
+    var link = document.getElementById('random-note');
+    if (!link) return;
+    link.onclick = function(e) {
+      e.preventDefault();
+      fetchData.then(function(data) {
+        var slugs = Object.keys(data).filter(function(slug) {
+          if (slug === 'index') return false;
+          if (slug === '评论反馈') return false;
+          if (slug.endsWith('/index')) return false;
+          return true;
+        });
+        if (slugs.length === 0) return;
+        var randomSlug = slugs[Math.floor(Math.random() * slugs.length)];
+        window.spaNavigate(new URL('/' + randomSlug, window.location.origin));
+      });
+    };
+  }
+  setupRandomNote();
+  document.addEventListener('nav', function() {
+    if (document.body.dataset.slug === 'index' || document.body.dataset.slug === '') {
+      setupRandomNote();
+    }
+  });
+})();
+</script>
 
 <div class="home-section-title">会计</div>
 
