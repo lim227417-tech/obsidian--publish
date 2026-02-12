@@ -3,8 +3,9 @@ publish: true
 title: Zen Mind , Generative Core.
 created: 2026-01-02T11:16:13.869+08:00
 modified: 2026-01-25T16:36:23.067+08:00
-cssclasses: "home"
+cssclasses: home
 ---
+
 
 <div id="goatcounter-views" style="text-align: center; margin-bottom: 0.8rem;">
   <span id="gc-badge" style="display: inline-flex; align-items: center; border-radius: 999px; overflow: hidden; font-size: 0.78rem; line-height: 1; box-shadow: 0 1px 3px rgba(0,0,0,0.08); opacity: 0; transition: opacity 0.3s ease;">
@@ -68,4 +69,8 @@ cssclasses: "home"
 - 真题与例题的拆解与总结
 - 学习方法、复盘思路与工具流程
 
-![[附件/index-1769330070677.webp|640]]
+![[99-system/附件/index-1769330070677.webp|640]]
+
+
+
+
