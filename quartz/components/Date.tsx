@@ -26,6 +26,55 @@ export function formatDate(d: Date, locale: ValidLocale = "en-US"): string {
   })
 }
 
+export function formatDateEnShort(d: Date): string {
+  return d.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  })
+}
+
 export function Date({ date, locale }: Props) {
   return <time datetime={date.toISOString()}>{formatDate(date, locale)}</time>
+}
+
+interface PublishUpdateProps {
+  created?: Date
+  modified?: Date
+}
+
+export function PublishUpdateDate({ created, modified }: PublishUpdateProps) {
+  if (!created && !modified) return null
+
+  if (created && modified) {
+    return (
+      <span>
+        发布于 <time datetime={created.toISOString()}>{formatDateEnShort(created)}</time>
+        {" · "}
+        更新于 <time datetime={modified.toISOString()}>{formatDateEnShort(modified)}</time>
+      </span>
+    )
+  }
+
+  if (created) {
+    return (
+      <span>
+        发布于 <time datetime={created.toISOString()}>{formatDateEnShort(created)}</time>
+      </span>
+    )
+  }
+
+  return (
+    <span>
+      更新于 <time datetime={modified!.toISOString()}>{formatDateEnShort(modified!)}</time>
+    </span>
+  )
+}
+
+interface DateOnlyProps {
+  date: Date
+}
+
+export function DateEnShort({ date }: DateOnlyProps) {
+  return <time datetime={date.toISOString()}>{formatDateEnShort(date)}</time>
 }
