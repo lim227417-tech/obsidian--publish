@@ -14,12 +14,16 @@
 tbody,
 li,
 p {
-  line-height: 1.75rem;
+  line-height: 1.8;
 }
 
 // --- Paragraph spacing ---
 article p {
-  margin-bottom: 0.8rem;
+  margin-bottom: 1.05rem;
+}
+
+article p + p {
+  margin-top: 0.2rem;
 }
 
 // --- Text selection: warm tone ---
@@ -39,8 +43,8 @@ article p {
 
 // --- Typography: slightly larger, darker body text ---
 body {
-  font-size: 1.08rem;
-  font-weight: 450;
+  font-size: 1.12rem;
+  font-weight: 420;
 }
 
 // --- Bold text: terracotta orange color ---
@@ -275,6 +279,73 @@ article .home-card-title {
 article .home-card-desc {
   color: color-mix(in srgb, var(--darkgray) 80%, var(--dark) 20%);
   font-size: 0.95rem;
+}
+
+// --- Reading measure: limit long line length ---
+.center > article {
+  max-width: 76ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// --- Lists: add a touch more vertical rhythm ---
+article li + li {
+  margin-top: 0.3rem;
+}
+
+// --- Mobile reading tweaks ---
+@media all and (max-width: 600px) {
+  body {
+    font-size: 1.05rem;
+  }
+
+  tbody,
+  li,
+  p {
+    line-height: 1.75;
+  }
+
+  article p {
+    margin-bottom: 0.9rem;
+  }
+
+  article p + p {
+    margin-top: 0.15rem;
+  }
+
+  .center > article {
+    max-width: 100%;
+  }
+
+  article li + li {
+    margin-top: 0.2rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    margin-top: 2.1rem;
+    margin-bottom: 0.9rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+    margin-top: 1.8rem;
+    margin-bottom: 0.85rem;
+  }
+
+  h3 {
+    font-size: 1.08rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  h4,
+  h5,
+  h6 {
+    font-size: 0.98rem;
+    margin-top: 1.35rem;
+    margin-bottom: 0.75rem;
+  }
 }
 
 .home img {
