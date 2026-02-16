@@ -29,7 +29,7 @@
 .explorer {
   display: flex;
   flex-direction: column;
-  overflow-y: hidden;
+  overflow-y: auto;
 
   min-height: 1.2rem;
   flex: 0 1 auto;
@@ -110,7 +110,6 @@ button.desktop-explorer {
 
 .explorer-content {
   list-style: none;
-  overflow: hidden;
   overflow-y: auto;
   margin-top: 0.5rem;
 
@@ -163,7 +162,7 @@ button.desktop-explorer {
   & div > a {
     color: var(--secondary);
     font-family: var(--headerFont);
-    font-size: 0.95rem;
+    font-size: 1.08rem;
     font-weight: $semiBoldWeight;
     line-height: 1.5rem;
     display: inline-block;
@@ -186,7 +185,7 @@ button.desktop-explorer {
     font-family: var(--headerFont);
 
     & span {
-      font-size: 0.95rem;
+      font-size: 1.08rem;
       display: inline-block;
       color: var(--secondary);
       font-weight: $semiBoldWeight;
