@@ -16,7 +16,10 @@
     height: 20px;
     top: calc(50% - 10px);
     fill: var(--darkgray);
-    transition: opacity 0.1s ease;
+    transition:
+      transform 0.4s ease,
+      opacity 0.3s ease;
+    transform-origin: center;
   }
 }
 
@@ -34,14 +37,42 @@
   }
   & > .nightIcon {
     display: inline;
+    animation: icon-appear 0.4s ease;
   }
 }
 
 :root .darkmode {
   & > .dayIcon {
     display: inline;
+    animation: icon-appear 0.4s ease;
   }
   & > .nightIcon {
     display: none;
   }
+}
+
+@keyframes icon-appear {
+  from {
+    transform: rotate(-90deg) scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+  }
+}
+
+/* View Transitions：禁用浏览器默认的淡入淡出，改用 clip-path 圆形扩散 */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-new(root) {
+  z-index: 9999;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
 }
