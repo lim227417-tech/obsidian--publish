@@ -284,10 +284,25 @@ article .home-card-desc {
 // --- Reading measure: limit long line length ---
 .page > #quartz-body .center > article,
 .page > #quartz-body .page-header,
-.page > #quartz-body .page-footer {
+.page > #quartz-body .page-footer,
+.page > #quartz-body .center > .popover-hint > .page-listing {
   max-width: 100ch;
   margin-left: auto;
   margin-right: auto;
+}
+
+.page > #quartz-body > footer {
+  max-width: 100ch;
+  min-width: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// --- Footer separator ---
+.page > #quartz-body > footer {
+  border-top: 1px solid var(--lightgray);
+  padding-top: 1.5rem;
+  margin-top: 2rem;
 }
 
 // --- Lists: add a touch more vertical rhythm ---
@@ -377,4 +392,75 @@ article strong + ul + strong {
 // --- Tags: no underline for cleaner appearance ---
 a.tag-link {
   text-decoration: none;
+}
+
+// --- Explorer: fix scroll in flex container ---
+.sidebar.left {
+  min-height: 0;
+}
+
+.sidebar.left > *:not(.explorer) {
+  flex-shrink: 0;
+}
+
+.explorer {
+  min-height: 0;
+  flex: 1 1 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  scroll-behavior: auto;
+}
+
+.explorer-content {
+  min-height: 0;
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  scroll-behavior: auto;
+}
+
+// Override base.scss's div:has(> .overflow) overflow-y:hidden
+.explorer-content:has(> .overflow) {
+  overflow-y: visible;
+}
+
+.explorer-content ul.overflow {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  scroll-behavior: auto;
+  overscroll-behavior: contain;
+}
+
+.sidebar.left > *:not(.explorer) {
+  flex-shrink: 0;
+}
+
+.explorer {
+  min-height: 0;
+  flex: 1 1 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.explorer-content {
+  min-height: 0;
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+// Override base.scss's div:has(> .overflow) overflow-y:hidden
+.explorer-content:has(> .overflow) {
+  overflow-y: visible;
+}
+
+.explorer-content ul.overflow {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
 }
