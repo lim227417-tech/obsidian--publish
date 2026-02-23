@@ -406,61 +406,27 @@ a.tag-link {
 .explorer {
   min-height: 0;
   flex: 1 1 0;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
-  scroll-behavior: auto;
+  overflow: hidden;
 }
 
 .explorer-content {
   min-height: 0;
   flex: 1;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
-  scroll-behavior: auto;
-}
-
-// Override base.scss's div:has(> .overflow) overflow-y:hidden
-.explorer-content:has(> .overflow) {
-  overflow-y: visible;
+  overflow: hidden;
 }
 
 .explorer-content ul.overflow {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
-  scroll-behavior: auto;
   overscroll-behavior: contain;
-}
+  scrollbar-width: none; // Firefox: hide scrollbar
 
-.sidebar.left > *:not(.explorer) {
-  flex-shrink: 0;
-}
-
-.explorer {
-  min-height: 0;
-  flex: 1 1 0;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.explorer-content {
-  min-height: 0;
-  flex: 1;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-// Override base.scss's div:has(> .overflow) overflow-y:hidden
-.explorer-content:has(> .overflow) {
-  overflow-y: visible;
-}
-
-.explorer-content ul.overflow {
-  flex: 1;
-  overflow-y: auto;
-  min-height: 0;
+  &::-webkit-scrollbar {
+    display: none; // Chrome/Safari: hide scrollbar
+  }
 }

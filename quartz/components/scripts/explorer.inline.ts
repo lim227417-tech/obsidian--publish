@@ -228,6 +228,21 @@ async function setupExplorer(currentSlug: FullSlug) {
       }
     }
 
+    // Ensure wheel events on explorer items scroll the ul, not the page
+    const wheelHandler = (e: WheelEvent) => {
+      const ul = explorerUl as HTMLElement
+      const delta = e.deltaY
+      const atTop = ul.scrollTop === 0 && delta < 0
+      const atBottom = ul.scrollTop + ul.clientHeight >= ul.scrollHeight && delta > 0
+      if (!atTop && !atBottom) {
+        e.preventDefault()
+        e.stopPropagation()
+        ul.scrollTop += delta
+      }
+    }
+    explorer.addEventListener("wheel", wheelHandler, { passive: false })
+    window.addCleanup(() => explorer.removeEventListener("wheel", wheelHandler))
+
     // Set up event handlers
     const explorerButtons = explorer.getElementsByClassName(
       "explorer-toggle",
