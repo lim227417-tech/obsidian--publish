@@ -42,8 +42,9 @@ export function byDateAndAlphabeticalFolderFirst(_cfg: GlobalConfiguration): Sor
 
     // If both are folders or both are files, sort by created date/alphabetical
     if (f1Created && f2Created) {
-      // sort descending
-      return f2Created.getTime() - f1Created.getTime()
+      const timeDiff = f2Created.getTime() - f1Created.getTime()
+      // If dates differ, sort by date descending; if same date, fall through to filename sort
+      if (timeDiff !== 0) return timeDiff
     } else if (f1Created && !f2Created) {
       // prioritize files with dates
       return -1
@@ -51,10 +52,10 @@ export function byDateAndAlphabeticalFolderFirst(_cfg: GlobalConfiguration): Sor
       return 1
     }
 
-    // otherwise, sort lexographically by title
-    const f1Title = f1.frontmatter?.title.toLowerCase() ?? ""
-    const f2Title = f2.frontmatter?.title.toLowerCase() ?? ""
-    return f1Title.localeCompare(f2Title)
+    // Sort lexicographically by filename (slug) for stable ordering
+    const f1Slug = f1.slug ?? ""
+    const f2Slug = f2.slug ?? ""
+    return f1Slug.localeCompare(f2Slug)
   }
 }
 
